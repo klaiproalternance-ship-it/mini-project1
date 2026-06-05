@@ -17,35 +17,41 @@ devops-monitor/
 └── requirements.txt     # Dépendances Python
 ```
 
-## ⚙️ Prérequis
+## ⚡ Démarrage Rapide (Quick Start)
 
-- **Docker** & **Docker Compose** (recommandé pour le lancement local)
-- **Python 3.11+** (pour le développement local sans Docker)
-- **Make** (pour utiliser les commandes automatisées du Makefile)
-- **Azure CLI** (pour le déploiement sur Azure)
+Vous venez de cloner le projet ? Voici comment le lancer en **1 minute chrono**.
 
-## 🚀 Installation & Lancement Local
+**Prérequis** : Vous devez avoir [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et lancé sur votre ordinateur.
 
-La manière la plus simple d'exécuter le projet est d'utiliser **Docker** et le `Makefile`.
-
-1. **Cloner le projet et se rendre dans le dossier** :
+1. Ouvrez un terminal dans le dossier du projet (`devops-monitor`).
+2. Tapez la commande suivante :
    ```bash
-   cd devops-monitor
+   docker compose up --build -d
    ```
+3. Et c'est tout ! 🎉 Accédez maintenant à :
+   - **Dashboard** : [http://localhost:8501](http://localhost:8501)
+   - **API Backend** : [http://localhost:8000/docs](http://localhost:8000/docs)
 
-2. **Démarrer l'application avec Docker Compose** :
-   ```bash
-   make up
-   ```
-   *L'API sera disponible sur `http://localhost:8000` (Swagger sur `/docs`)*
-   *Le Dashboard sera disponible sur `http://localhost:8501`*
+Pour tout éteindre quand vous avez terminé, tapez `docker compose down`.
 
-3. **Arrêter l'application** :
-   ```bash
-   make down
-   ```
+---
 
-*(Alternative) Lancement local sans Docker :*
+## ⚙️ Prérequis Détaillés
+
+- **Docker** & **Docker Compose** (Obligatoire pour le lancement simple)
+- **Python 3.11+** (Optionnel, uniquement pour le développement local sans Docker)
+- **Make** (Optionnel, pour utiliser les raccourcis du Makefile)
+
+## 🚀 Utilisation Avancée (Makefile)
+
+Si vous avez l'outil `make` installé sur votre ordinateur (Linux/Mac), vous pouvez utiliser les raccourcis configurés :
+
+- `make up` : Lance le projet (équivalent de `docker compose up --build -d`)
+- `make down` : Arrête le projet et supprime les conteneurs
+- `make logs` : Affiche les logs en temps réel
+- `make clean` : Nettoie les fichiers temporaires locaux
+
+*(Alternative) Lancement local de développement sans Docker :*
 ```bash
 make install
 make dev
