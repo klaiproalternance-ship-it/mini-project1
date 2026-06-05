@@ -3,7 +3,7 @@
 Bienvenue dans le projet **DevOps Monitor**, une application de surveillance système complète comprenant une **API FastAPI** et un **Dashboard interactif Streamlit**.
 
 ## 🎯 Objectifs
-Ce projet permet de surveiller en temps réel des serveurs (CPU, Mémoire, Disque) via une interface moderne et de gérer un parc de serveurs supervisés. Il est conçu pour être facilement déployable en local ou sur le cloud (Azure).
+Ce projet permet de surveiller en temps réel des serveurs (CPU, Mémoire, Disque) via une interface moderne et de gérer un parc de serveurs supervisés. Il est entièrement conteneurisé avec **Docker** pour un déploiement facile et reproductible sur n'importe quel environnement.
 
 ## 🗂️ Structure du Projet
 
@@ -65,19 +65,17 @@ Pour vérifier le formatage du code (Linting) :
 make lint
 ```
 
-## ☁️ Déploiement sur Azure
+## 🐳 Déploiement Production (Docker)
 
-Le projet est préconfiguré pour être déployé sur **Azure Container Apps** (API) et **Azure Web Apps** (Dashboard).
+Le projet est préconfiguré pour être déployé via Docker Compose, que ce soit en local ou sur un serveur (VPS).
 
-Assurez-vous d'être connecté à Azure (`az login`) et d'avoir défini vos variables dans le Makefile, puis exécutez :
+Assurez-vous d'avoir Docker installé et lancez simplement :
 
 ```bash
-# Déployer l'API sur Azure Container Apps
-make deploy-api
-
-# Déployer le Dashboard sur Azure Web App
-make deploy-dash
+docker compose up --build -d
 ```
+
+L'API et le Dashboard vont communiquer via le réseau interne de Docker. C'est la méthode recommandée pour faire tourner le projet !
 
 ## 🧹 Nettoyage du dépôt
 
