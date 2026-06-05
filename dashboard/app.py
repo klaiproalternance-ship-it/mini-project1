@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import time
+import os
 
 # Page configuration
 st.set_page_config(
@@ -47,8 +48,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# API Base URL
-API_URL = "http://localhost:8000"
+# API Base URL - loaded from environment variable for Docker/Azure, falling back to localhost
+API_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 st.title("📊 DevOps Monitoring Dashboard")
 

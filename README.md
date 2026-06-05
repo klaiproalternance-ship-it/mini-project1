@@ -1,52 +1,87 @@
-# DevOps Monitoring Dashboard MVP
+# 📊 DevOps Monitoring Dashboard (Mini-Project)
 
-Ce projet est un tableau de bord de surveillance DevOps opérationnel comprenant un backend FastAPI et un frontend interactif Streamlit.
+Bienvenue dans le projet **DevOps Monitor**, une application de surveillance système complète comprenant une **API FastAPI** et un **Dashboard interactif Streamlit**.
 
-## Structure du Projet
+## 🎯 Objectifs
+Ce projet permet de surveiller en temps réel des serveurs (CPU, Mémoire, Disque) via une interface moderne et de gérer un parc de serveurs supervisés. Il est conçu pour être facilement déployable en local ou sur le cloud (Azure).
 
-```
+## 🗂️ Structure du Projet
+
+```text
 devops-monitor/
-├── api/
-│   ├── __init__.py
-│   ├── main.py          # Point d'entrée de FastAPI (lifespan, routes)
-│   ├── models.py        # Modèles Pydantic + Dataclass Server
-│   ├── auth.py          # Dépendance pour la clé API
-│   ├── metrics.py       # Helper psutil pour collecter les métriques système
-│   └── poller.py        # Logique de vérification de santé en arrière-plan
-├── dashboard/
-│   └── app.py           # Frontend Streamlit
-├── tests/
-│   ├── test_metrics.py
-│   └── test_routes.py
-├── requirements.txt
-└── README.md
+├── api/                 # Backend FastAPI (métriques, serveurs, websockets)
+├── dashboard/           # Frontend Streamlit (visualisation en temps réel)
+├── tests/               # Tests automatisés (Pytest)
+├── docker-compose.yml   # Configuration multi-conteneurs Docker
+├── Makefile             # Commandes d'automatisation (Make)
+└── requirements.txt     # Dépendances Python
 ```
 
-## Installation
+## ⚙️ Prérequis
 
-1. Installez les dépendances requises :
+- **Docker** & **Docker Compose** (recommandé pour le lancement local)
+- **Python 3.11+** (pour le développement local sans Docker)
+- **Make** (pour utiliser les commandes automatisées du Makefile)
+- **Azure CLI** (pour le déploiement sur Azure)
+
+## 🚀 Installation & Lancement Local
+
+La manière la plus simple d'exécuter le projet est d'utiliser **Docker** et le `Makefile`.
+
+1. **Cloner le projet et se rendre dans le dossier** :
    ```bash
-   pip install -r requirements.txt
+   cd devops-monitor
    ```
 
-## Utilisation
-
-1. Démarrez l'API FastAPI (sur le port 8000 par défaut) :
+2. **Démarrer l'application avec Docker Compose** :
    ```bash
-   uvicorn api.main:app --reload --port 8000
+   make up
+   ```
+   *L'API sera disponible sur `http://localhost:8000` (Swagger sur `/docs`)*
+   *Le Dashboard sera disponible sur `http://localhost:8501`*
+
+3. **Arrêter l'application** :
+   ```bash
+   make down
    ```
 
-2. Dans un autre terminal, lancez le Dashboard Streamlit :
-   ```bash
-   streamlit run dashboard/app.py
-   ```
-
-3. Ouvrez votre navigateur et accédez à l'adresse suivante :
-   `http://localhost:8501`
-
-## Exécution des Tests
-
-Pour exécuter la suite de tests unitaires et d'intégration :
+*(Alternative) Lancement local sans Docker :*
 ```bash
-pytest tests/ -v
+make install
+make dev
+```
+
+## 🧪 Tests & Qualité
+
+Ce projet inclut des tests unitaires configurés avec **Pytest** et une vérification de la couverture de code.
+
+Pour exécuter les tests :
+```bash
+make test
+```
+
+Pour vérifier le formatage du code (Linting) :
+```bash
+make lint
+```
+
+## ☁️ Déploiement sur Azure
+
+Le projet est préconfiguré pour être déployé sur **Azure Container Apps** (API) et **Azure Web Apps** (Dashboard).
+
+Assurez-vous d'être connecté à Azure (`az login`) et d'avoir défini vos variables dans le Makefile, puis exécutez :
+
+```bash
+# Déployer l'API sur Azure Container Apps
+make deploy-api
+
+# Déployer le Dashboard sur Azure Web App
+make deploy-dash
+```
+
+## 🧹 Nettoyage du dépôt
+
+Pour nettoyer les fichiers temporaires locaux (cache, pycache) :
+```bash
+make clean
 ```
