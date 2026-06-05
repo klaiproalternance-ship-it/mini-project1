@@ -1,5 +1,9 @@
 # 📊 DevOps Monitoring Dashboard (Mini-Project)
 
+> [!IMPORTANT]
+> **Note concernant le déploiement Azure :**
+> Mon compte Azure ne fonctionnant pas actuellement (problème d'accès/crédits), le projet a été intégralement pensé et déployé sur **Docker (via Docker Compose)** pour remplacer le déploiement sur Azure Container Apps et Web Apps. Le projet est donc 100% fonctionnel et packagé pour la production via Docker.
+
 Bienvenue dans le projet **DevOps Monitor**, une application de surveillance système complète comprenant une **API FastAPI** et un **Dashboard interactif Streamlit**.
 
 ## 🎯 Objectifs
